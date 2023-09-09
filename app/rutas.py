@@ -36,7 +36,7 @@ def handle_Autos():
             "puertas":auto.puertas
             } for auto in autos]
 
-        return {"Count":len(autos), "RESULTS":results,"MESSAGE":"success"}
+        return {"Count":len(autos), "results":results,"MESSAGE":"success"}
 
 
 @app.route('/auto/<idauto>', methods=['GET','PUT','DELETE'])
