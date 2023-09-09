@@ -15,7 +15,8 @@ def handle_Autos():
                            detalle=data['detalle'],
                            imagen=data['imagen'],
                            precio=data['precio'],
-                           estado=data['estado']
+                           estado=data['estado'],
+                           puertas=data['puertas']
                            )
             db.session.add(new_auto)
             db.session.commit()
@@ -31,10 +32,11 @@ def handle_Autos():
             "detalle":auto.detalle,
             "precio":auto.precio,
             "imagen":auto.imagen,
-            "estado":auto.estado
+            "estado":auto.estado,
+            "puertas":auto.puertas
             } for auto in autos]
 
-        return {"Count":len(autos), "Autos":results,"message":"success"}
+        return {"Count":len(autos), "RESULTS":results,"MESSAGE":"success"}
 
 
 @app.route('/auto/<idauto>', methods=['GET','PUT','DELETE'])
@@ -46,7 +48,8 @@ def handle_auto(idauto):
             "detalle":auto.detalle,
             "precio":auto.precio,
             "imagen":auto.imagen,
-            "estado":auto.estado
+            "estado":auto.estado,
+            "puertas":auto.puertas
         }
         return {"message":"success","auto":response}
     elif request.method=='PUT':
@@ -56,7 +59,7 @@ def handle_auto(idauto):
         auto.precio = data["precio"]
         auto.imagen = data["imagen"]
         auto.estado = data["estado"]
-
+        auto.puertas = data["puertas"]
         db.session.add(auto)
         db.session.commit()
 
